@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>虚拟仪器原理应用</title>
+    <link href="../font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script defer src="../javascript/all.min.js"></script>
+    <script src="../javascript/js.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script type="text/javascript">
+        $(window).on("scroll",function(){
+          if ($(window).scrollTop()) {
+            $('nav').addClass('navToBlack');
+          }
+          else {
+            $('nav').removeClass('navToBlack');
+          }
+        })
+    
+    </script>
+
+</head>
+<body>
+<header class="haoHeader">
+  <nav class="haoNav">
+    
+    <div class="haoMenu">
+      <ul class="navigation-ul">
+        <li class="ul-item"><a href="#">登录/注册</a></li>
+        <li class="ul-item"><a href="#">我的鹿克</a></li>
+          <li class="ul-item"><a class="btn" href="#"><i class="fa fa-shopping-cart"></i>购物车
+            </a></li>
+            <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="music/1.mp3" autoplay preload hidden></audio>
+
+</li>
+      </ul>
+    </div>
+
+  </nav>
+  </header>
+<div class="searcher">
+    <div class="log">
+    <a href="../index.html"><img class="navLogo" src="../img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+       	<a href="../search.html"><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+       </form>  
+     </div>
+</div>
+<div class="newspaper">
+<div class="responsive">
+  <div class="img">
+    <img src="../img/虚拟仪器原理及应用(普通....jpg" height="480" width="420"/>
+    <ul class="b">
+    <li><h2>虚拟仪器原理及应用</h2></li>
+    <li><h4>内容简介:</h4>
+    <p>《虚拟仪器原理及应用》为21世纪高等学校规划教材。全书共分七章，主要内容包括LabVIEW概述、频谱与采样、经典滤波器的设计、变速率信号处理、最优化理论与非线性信号处理、信号的采集技术、虚拟仪器的总线技术等。书中全面系统地论述了虚拟仪器在信号处理及系统集成上的基本方法与基本理论。作为系统集成的首选开发环境，《虚拟仪器原理及应用》还详细地介绍了信号采集的基本知识和信号同步地实现方法，介绍了系统集成中的总线技术及总线技术的发展方向。《虚拟仪器原理及应用》提供了丰富的基础知识和实例，便于读者自学。
+    </p></li>
+</ul>
+
+</div>
+</div>
+<div align="center"><a href="../书籍试看.html">返回</a></div>
+</body>
+</html>

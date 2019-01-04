@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鹿克书屋</title>
+    <link href="font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script defer src="javascript/all.min.js"></script>
+    <script src="javascript/js.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+        $(window).on("scroll",function(){
+          if ($(window).scrollTop()) {
+            $('nav').addClass('navToBlack');
+          }
+          else {
+            $('nav').removeClass('navToBlack');
+          }
+        })
+    
+    </script>
+
+</head>
+<body>
+<header class="haoHeader">
+  <nav class="haoNav">
+    
+    <div class="haoMenu">
+      <ul class="navigation-ul">
+        <li class="ul-item"><a href="#">登录/注册</a></li>
+        <li class="ul-item"><a href="#">我的鹿克</a></li>
+          <li class="ul-item"><a class="btn" href="#"><i class="fa fa-shopping-cart"></i>购物车
+            </a></li>
+            <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="music/1.mp3" autoplay preload hidden></audio>
+
+</li>
+      </ul>
+    </div>
+
+  </nav>
+  </header>
+<div class="searcher">
+    <div class="log">
+    <a href="index.html"><img class="navLogo" src="img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+          <a href="search.html"><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+      </form>  
+     </div>
+</div>
+	<hr align="center" size="3" color="#6495ED" width="2000"/>
+	<br /><br />
+	<div align="center">
+            <a class="grid-one-grid-price" href="books/财政学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/财政学(第九版).jpg">
+                    <div class="floor-item-title">财政学（第九版）
+                    </div>
+                    <div class="floor-price">￥43</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/电工电子学实践教程.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/电工电子学实践教程.jpg">
+                    <div class="floor-item-title">电工电子学实践教程</div>
+                    <div class="floor-price">￥39</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/起重机金属结构设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/起重机金属结构设计.jpg">
+                    <div class="floor-item-title">起重机金属结构设计</div>
+                    <div class="floor-price">￥39</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/系统工程导论.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/系统工程导论.jpg">
+                    <div class="floor-item-title">系统工程导论</div>
+                    <div class="floor-price">￥36</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/企业会计制度设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/企业会计制度设计(第5版普....jpg">
+                    <div class="floor-item-title">企业会计制度设计</div>
+                    <div class="floor-price">￥32</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/化工机械及设备.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/化工机械及设备(第五版).jpg">
+                    <div class="floor-item-title">化工机械及设备(第五版)</div>
+                    <div class="floor-price">￥45</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/物流自动化技术及应用.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/物流自动化技术及应用.jpg">
+                    <div class="floor-item-title">物流自动化技术及应用</div>
+                    <div class="floor-price">￥33</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/项目管理知识体系指南.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/项目管理知识体系指南(pm....jpg">
+                    <div class="floor-item-title">项目管理知识体系指南</div>
+                    <div class="floor-price">￥228</div>
+            </div></a>
+               <a class="grid-one-grid-price" href="books/电工学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/电工学(第七版)(下册)....jpg">
+                    <div class="floor-item-title">电工学(第七版)</div>
+                    <div class="floor-price">￥26</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/电力电子技术.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/电力电子技术.jpg">
+                    <div class="floor-item-title">电力电子技术</div>
+                    <div class="floor-price">￥45</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/工程经济学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/工程经济学(第2版).jpg">
+                    <div class="floor-item-title">工程经济学(第2版)</div>
+                    <div class="floor-price">￥35</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/结构力学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/土木工程教材精选-结构力学....jpg">
+                    <div class="floor-item-title">土木工程教材精选-结构力学</div>
+                    <div class="floor-price">￥36</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/起重机金属结构设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/起重机金属结构设计.jpg">
+                    <div class="floor-item-title">起重机金属结构设计</div>
+                    <div class="floor-price">￥39</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/企业会计制度设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/企业会计制度设计(第5版普....jpg">
+                    <div class="floor-item-title">企业会计制度设计</div>
+                    <div class="floor-price">￥32</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/团队管理.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/团队管理.jpg">
+                    <div class="floor-item-title">团队管理</div>
+                    <div class="floor-price">￥25</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/工程造价编制与职业素养.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/工程造价编制与职业素养.jpg">
+                    <div class="floor-item-title">工程造价编制与职业素养</div>
+                    <div class="floor-price">￥34</div>
+            </div></a>
+           <a class="grid-one-grid-price" href="books/虚拟仪器原理及应用.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/虚拟仪器原理及应用(普通....jpg">
+                    <div class="floor-item-title">虚拟仪器原理及应用</div>
+                    <div class="floor-price">￥54</div>
+            </div></a>
+       
+        <a class="grid-one-grid-price" href="books/海事法.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/海事法.jpg">
+                    <div class="floor-item-title">海事法</div>
+                    <div class="floor-price">￥133</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/国际航运管理国际航运管理.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/国际航运管理国际航运管理.jpg">
+                    <div class="floor-item-title">国际航运管理国际航运管理</div>
+                    <div class="floor-price">￥62</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/电子商务系统分析与设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/电子商务系统分析与设计（....jpg">
+                    <div class="floor-item-title">电子商务系统分析与设计</div>
+                    <div class="floor-price">￥50</div>
+            </div></a>
+        </div>
+      
+        </body>
+</html>

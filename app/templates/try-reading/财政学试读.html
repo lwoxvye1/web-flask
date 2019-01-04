@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财政学试读</title>
+    <link href="../../static/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css">
+    <script defer src="../../static/javascript/all.min.js"></script>
+    <script src="../../static/javascript/js.js"></script>
+    <script src="../../static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../static/style.css">
+    <script type="text/javascript">
+        $(window).on("scroll",function(){
+          if ($(window).scrollTop()) {
+            $('nav').addClass('navToBlack');
+          }
+          else {
+            $('nav').removeClass('navToBlack');
+          }
+        })
+    
+    </script>
+
+</head>
+<body>
+<header class="haoHeader">
+  <nav class="haoNav">
+    
+    <div class="haoMenu">
+      <ul class="navigation-ul">
+        <li class="ul-item"><a href=login>登录/注册</a></li>
+        <li class="ul-item"><a href="#">我的鹿克</a></li>
+          <li class="ul-item"><a class="btn" href=shoppingcart><i class="fa fa-shopping-cart"></i>购物车
+            </a></li>
+            <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="../../static/music/1.mp3" autoplay preload hidden></audio>
+
+</li>
+      </ul>
+    </div>
+
+  </nav>
+  </header>
+<div class="searcher">
+    <div class="log">
+    <a href=index><img class="navLogo" src="../../static/img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+       	<a href=search><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+       </form>  
+     </div>
+</div>
+<div class="newspaper">
+<div class="responsive">
+  <div class="img">
+     <img src="../../static/img/财政学(第九版).jpg" height="480" width="420"/>
+   	<ul class="b">
+     <li><h2>财政学</h2></li>
+     <li><h4>内容简介:</h4>
+   	<div class="suojin">
+   		<p style="line-height:200%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   			本教材除导论外大体分为7个部分：第一部分说明了本教材编写的指导思想和财政学的研究方法，阐述了财政学的基本理论问题。第二部分属于财政支出部分，阐述财政支出的基本理论，分析财政支出规模和结构，并将财政支出项目分为购买性支出和转移性支出，分别进行具体分析。第三部分属于财政收入和税收部分，首先分析财政收入的规模和构成，而后重点分析税收原理、税收的经济效应以及改革理论和我国现行税收制度。第四部分属于国债部分，阐述国债原理、国债规模、国债的发行与偿还以及国债市场，也分析了地方政府债务问题。第五部分属于国家预算部分，阐述国家预算有关知识、预算管理体制和预算管理制度。第六部分属于财政平衡和财政政策部分，阐述财政平衡、财政赤字以及财政政策。第七部分分析开放经济下的财政问题，包括国际税收、关税、出口退税、外债和开放经济下的财政—货币政策配合。
+   </p>
+   	</div></li>
+   </ul>
+   
+  </div>
+</div>
+ <div align="center"><a href=look>返回</a></div>
+</body>
+</html>

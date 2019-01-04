@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>登陆</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script src="../static/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    ﻿<header class="haoHeader">
+  <nav class="haoNav">
+    
+    <div class="haoMenu">
+      <ul class="navigation-ul">
+        <li class="ul-item" ><a href=login >登录/注册</a></li>
+        <li class="ul-item"><a href="#">我的鹿克</a></li>
+          <li class="ul-item"><a class="btn" href=shoppingcart><i class="fa fa-shopping-cart"></i>购物车
+            </a></li>
+            <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="../static/music/1.mp3" autoplay preload hidden></audio>
+
+</li>
+      </ul>
+    </div>
+
+  </nav>
+  </header>
+<div class="searcher">
+    <div class="log">
+    <a href=index><img id="logo" class="navLogo" src="../static/img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form" style="width: 500px;margin-top:0;padding-top:25px;">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+        <a href=search><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+      </form>
+     </div>
+</div>
+                        <style type="text/css">
+                            input::-webkit-input-placeholder{
+                                color: white;
+                             }
+                             a:hover{
+                                color: skyblue;
+                             }
+                         </style>
+   
+        
+        <div class="content-layout" style="width:1366px;margin: 0 auto;overflow: hidden;position: relative;height: 600px;background: linear-gradient(rgba(0,0,100,0.28),rgba(0,0,92,0.35)),url(../static/img/背景.jpg);">
+            <div class="signin" style="background: rgba(255,255,255,0.19);padding: 40px;width:250px;margin-top: 80px;height: 400px;margin-left:60%;">
+            <!-- <a href=login>登录</a> -->
+                <form id="login" action="success" method="post" style="width: 240px;text-align: center;margin: 0;">
+
+                        <h2 style="color: white;">用户登录</h2>
+
+                          <input type="text" name="username" id="username" value="" placeholder="请输入用户名/邮箱" onclick="disappear()" style="width: 240px; text-align: center; background: transparent; border: none;border-bottom: 1px solid #fff;font-size: 16px;padding: 10px 0;transition: border 0.5s;outline: none;color: white; " />
+                          <input type="password" name="password" id="password" value="" placeholder="请输入密码" onclick="disappear()" style="width: 240px; text-align: center; background: transparent; border: none;border-bottom: 1px solid #fff;font-size: 16px;padding: 10px 0;transition: border 0.5s;outline: none;color: white; "/><br>
+                          <br>
+                          <br>
+                          <br>
+                    <button  type="submit"  onclick="myFunction(event)" style="border: none;width: 190px;background: white;color: #000;font-size: 16px;line-height: 25px;padding: 10px 0;border-radius: 15px;cursor: pointer;">登录</button>
+                     <div style="color: white;"><span id="tip"> {{tip}}</span></div>
+                     <br>
+
+                
+            
+            
+                    <div id="container-log" >
+                    
+                        <a   href="#" style="margin-right: 0; font-size: 15px; color: yellow;text-decoration: none;"  >忘记密码</a>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                         <span style="color: white;font-size: 13px;padding-right: 10px;">还没有帐号?</span><a  href=register class="log-button" style="margin-right: 0; font-size: 15px;color:yellow;text-decoration:none;" >注册</a>
+                     
+                    </div>
+                </form>
+            </div>
+           
+      </div>
+
+
+     
+     
+<script>
+function myFunction(event){
+    event.preventDefault();
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    if(username === "" ){
+        document.getElementById("tip").innerHTML="用户名不能为空";
+        return false;
+    }
+    if (username.length<2|| username.length>10) {
+        document.getElementById("tip").innerHTML = "用户名必须在2-10个字符之间";
+        return false;
+    }
+    if(password === "" ){
+        document.getElementById("tip").innerHTML = "密码不能为空";
+        return false;
+    }
+    if (password.length < 6){
+        document.getElementById("tip").innerHTML="密码过短";
+        return false;
+    }
+    document.querySelector("#login").submit();
+}
+
+
+function disappear() {
+    document.getElementById("tip").innerHTML=null
+}
+</script>
+<script src="../static/javascript/js.js"></script>
+</body>
+</html>

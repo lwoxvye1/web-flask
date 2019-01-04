@@ -1,0 +1,10 @@
+.payment-list  li{
+float: left;position: relative;border: 1px solid gray;height: 18px;line-height: 18px;padding:5px 24px;list-style: none;margin-left: 70px;margin-right: 10px;
+color:gray;
+}
+.payment-list  li:hover{
+border:3px solid skyblue;
+}
+.inner:hover{
+background: url(../static/img/list.png) no-repeat;
+}

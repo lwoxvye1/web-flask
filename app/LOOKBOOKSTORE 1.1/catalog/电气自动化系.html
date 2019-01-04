@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电气自动化系</title>
+    <link href="../font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script defer src="../javascript/all.min.js"></script>
+    <script src="../javascript/js.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script type="text/javascript">
+        $(window).on("scroll",function(){
+          if ($(window).scrollTop()) {
+            $('nav').addClass('navToBlack');
+          }
+          else {
+            $('nav').removeClass('navToBlack');
+          }
+        })
+    
+    </script>
+
+
+</head>
+<body>
+<header class="haoHeader">
+  <nav class="haoNav">
+    
+    <div class="haoMenu">
+      <ul class="navigation-ul">
+        <li class="ul-item"><a href="#">登录/注册</a></li>
+        <li class="ul-item"><a href="#">我的鹿克</a></li>
+          <li class="ul-item"><a class="btn" href="#"><i class="fa fa-shopping-cart"></i>购物车
+            </a></li>
+            <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="../music/1.mp3" autoplay preload hidden></audio>
+
+</li>
+      </ul>
+    </div>
+
+  </nav>
+  </header>
+<div class="searcher">
+    <div class="log">
+    <a href="../index.html"><img class="navLogo" src="../img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+        <a href="../search.html"><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+      </form>  
+     </div>
+</div>
+
+
+
+<div class="floor">
+    <div class="floor-left">
+        <div class="floor-title">
+            <i class="color-mark"></i>
+            <div class="floor-title">
+                <a name="rexiao">电气自动化系</a>
+        
+            </div>
+            
+        </div>
+    </div>
+        	<br /><br />
+      <a class="grid-one-grid-price" href="../books/起重机金属结构设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="../img/起重机金属结构设计.jpg">
+                    <div class="floor-item-title">起重机金属结构设计</div>
+                    <div class="floor-price">￥39</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="../books/企业会计制度设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="../img/企业会计制度设计(第5版普....jpg">
+                    <div class="floor-item-title">企业会计制度设计</div>
+                    <div class="floor-price">￥32</div>
+            </div></a>
+             <br /><br /><br /><br /><br /><br /><br /><br />
+            <div align="left"><a href="../index.html">返回</a></div>
+         </div>
+
+</body>
+</html>
+
+

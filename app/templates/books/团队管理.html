@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>团队管理</title>
+    <link href="../../static/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css">
+    <script defer src="../../static/javascript/all.min.js"></script>
+    <script src="../../static/javascript/js.js"></script>
+    <script src="../../static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../../static/bootstrap.css">
+    <script type="text/javascript">
+        $(window).on("scroll",function(){
+          if ($(window).scrollTop()) {
+            $('nav').addClass('navToBlack');
+          }
+          else {
+            $('nav').removeClass('navToBlack');
+          }
+        })
+    
+  
+ </script>
+    <script>
+            function post_name() {
+                var data = {"name":"团队管理"};
+                $.ajax({
+                    type: 'POST',
+                    url: "/to_shopping_cart",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                $("#bt3").text("已加入购物车")
+
+            }
+
+		</script>
+    <script>
+function myFunction(){
+	alert("抱歉！本书暂不提供试读！");
+}
+</script>
+</head>
+<body>
+<header class="haoHeader">
+    <nav class="haoNav">
+
+        <div class="haoMenu">
+            <ul class="navigation-ul">
+                <li class="ul-item"><a href=login>登录/注册</a></li>
+                <li class="ul-item"><a href="#">我的鹿克</a></li>
+                <li class="ul-item"><a class="btn" href=shoppingcart><i class="fa fa-shopping-cart"></i>购物车
+                </a></li>
+                <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="../../static/music/1.mp3" autoplay preload hidden></audio>
+
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+  </header>
+<div class="searcher">
+    <div class="log">
+    <a href=index><img class="navLogo" src="../../static/img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+         	<a href=search><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+         </form>  
+     </div>
+</div>
+<div class="img" style="float: left;width: 35%;height: 40%;margin-left: 50px;">
+    <img src="../../static/img/团队管理.jpg" height="400px;" width="350px;"/>
+</div>
+<div class="desc" style="float: left;width:300px;height: 460px;">
+    <h1>团队管理</h1>
+    <br /><h3>产品名称：团队管理</h3>
+    <br /><h3>ISBN编号: 9787030302953</h3>
+    <br /><h3>作者:纪志明  </h3>
+    <br />
+    <span style="color: #f44336;font-size: 25px;" >价格：25.00</span>
+
+    <br /><br />
+    <div style="display: inline-block;width: 500px;">
+        <button class="button" type="submit" onclick="myFunction()">试读一下</button>
+        <button class="button button3" id="checkstand">立即购买</button>
+        <button class="button button4" id="bt3" type="submit"  onclick="post_name(event)">加入购物车</button>
+    </div>
+</div>
+
+
+
+<div style="width: 80%; float: left;margin-left: 38%;margin-top: 20px;">
+    <textarea name="message" id="message" style="width:300px; height:50px; border:solid 1px skyblue; border-radius:10px; resize:none;"></textarea>
+
+    <button type="button" style="font-size: 15px;margin-top: -40px;width: 100px;color:gray;background:#9fcdff;" class="btn btn-default btn-lg" onclick="sendMessage(event)">留言</button>
+</div>
+</body>
+<script>
+    function sendMessage(event) {
+        event.preventDefault();
+        var text = $('#message').val();
+        if (text === '' || text === undefined || text === null) {
+            alert("请输入留言！");
+        }else{
+            var time = new Date();
+            var year = time.getFullYear();
+            var month = time.getMonth() + 1;
+            var day = time.getDate();
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+            var newTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+            var data = {"idliuyan": text, "shijian": newTime, "book":"团队管理"};
+            $.ajax({
+                type: 'POST',
+                url: "/to_liuyan",
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json'
+            });
+            alert("提交成功!");
+        }
+
+    }
+</script>
+<script>
+    $("#checkstand").click(function () {
+        var a=prompt("请输入要购买的数量","1");
+        if (a<10 && a >0) {
+            var data = {};
+            var list = [];
+            var amount = [];
+            var sum = [];
+            amount[0] = a;
+            list[0] = "9787030302953";
+            s = (25.00*amount).toFixed(1);
+            sum[0] = s;
+            data[0] = list;
+            data[1] = amount;
+            data[2] = sum;
+            $.ajax({
+                type: 'POST',
+                url: "/to_checkstand",
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json'
+            });
+            setTimeout("window.location = 'checkstand'",500);
+        }else{
+            alert("输入错误！")
+        }
+    })
+</script>
+</body>
+</html>

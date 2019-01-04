@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>结算页面</title>
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script src="../static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/hover.css">
+
+</head>
+<body>
+<header class="haoHeader">
+  <nav class="haoNav">
+    
+    <div class="haoMenu">
+      <ul class="navigation-ul">
+        <li class="ul-item" ><a href=login >登录/注册</a></li>
+        <li class="ul-item"><a href="#">我的鹿克</a></li>
+          <li class="ul-item"><a class="btn" href=shoppingcart><i class="fa fa-shopping-cart"></i>购物车
+            </a></li>
+            <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="../static/music/1.mp3" autoplay preload hidden></audio>
+
+</li>
+      </ul>
+    </div>
+
+  </nav>
+  </header>
+<div class="searcher">
+    <div class="log">
+    <a href=index><img id="logo" class="navLogo" src="../static/img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form" style="width: 500px;margin-left:500px;margin-top:0;padding-top:25px;">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+        <a href=search><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+      </form>  
+     </div>
+ </div>
+ <h2 style="line-height: 25px;color: #333;font-weight: 700;font-size: 14px;margin-left: 120px; ">选择收货地址</h2>
+ 	<div class="list" style="width: 1004px;">
+ 		<div class="inner" style="margin-left: 120px;width: 240px;float:left;">
+ 			<div class="atr"style="padding-left:10px;line-height:27px;color: gray;font-size: 13px;">
+ 				<span style="color: #666;">上海</span><span>(天下为公组收）</span><br>
+ 				<span style="padding-right: 5px;">浦东</span><span style="padding-right: 5px;">南汇新城镇</span><span style="padding-right: 5px;">海港大道1550号</span><span style="padding-right: 5px;">12345678912</span>
+ 				<br>
+ 				<a href="#" style="color: #c97;cursor: pointer;text-decoration: none;">修改</a>
+ 			</div>
+ 		</div>
+        <div class="inner" style="margin-left:10px;width: 240px;float:left;">
+ 			<div class="atr"style="padding-left:10px;line-height:27px;color: gray;font-size: 13px;">
+ 				<span style="color: #666;">上海</span><span>(天下为公组收）</span><br>
+ 				<span style="padding-right: 5px;">浦东</span><span style="padding-right: 5px;">南汇新城镇</span><span style="padding-right: 5px;">海港大道1550号</span><span style="padding-right: 5px;">12345678912</span>
+ 				<br>
+ 				<a href="#" style="color: #c97;cursor: pointer;text-decoration: none;">修改</a>
+ 			</div>
+
+ 		</div>
+
+ 	 </div>
+
+
+ <div style="margin-top:120px;">
+     <button style="margin-left:120px;margin-top:10px;">使用新地址</button>
+   <h2 style="line-height: 25px;color: #333;font-weight: 700;font-size: 14px;margin-left: 120px;">支付方式</h2>
+   <div class="payment-list">
+     <ul id="payment-list">
+     <li>货到付款</li>
+
+       <li>在线支付</li>
+       <li>公司转账</li>
+     </ul>
+   </div>
+ </div>
+ <div style="margin-top:50px;">
+ 	<h2 style="line-height: 25px;color: #333;font-weight: 700;font-size: 14px;margin-left: 120px;">确认订单信息</h2>
+ 	<div class="project" style="color: #8c8c8c;font-size: 15px;">
+    <div class="member">
+        <ul>
+            <li class="products-detail" style="list-style: none;display: inline-block;margin-left: 12%;">教材</li>
+            <li class="price" style="list-style: none;display: inline-block;margin-left: 30%;">单价</li>
+            <li class="amounts" style="list-style: none;display: inline-block;margin-left:5%;">数量</li>
+            <li class="youhui" style="list-style: none;display: inline-block;margin-left: 8%;">优惠方式</li>
+            <li class="calculate" style="list-style: none;display: inline-block;margin-left:10%;">小计</li>
+            
+        </ul>
+    </div>
+</div>
+<hr class="line" />
+ {%for  i  in  dict1 %}
+     <div style="background:#f3fbfe;">
+            <div class="shopping-cart-img" style=" position:relative;margin-left: 10%;"><img style="width:150px; height: 150px;" src={{dict1[i][4]}}></div>
+            <div class="shopping-cart-products" style="width: 100%; height: 150px;position: absolute; margin-top: -10%; ">
+            <ul style="padding-left:290px;">
+            <li class="name" id="name" style="list-style: none;" value={{dict1[i][0]}}>商品名称：{{dict1[i][0]}}</li>
+            <li style="list-style: none;" class="codes" id="code" value={{dict1[i][1]}}>编码：{{dict1[i][1]}}</li>
+            <li style="list-style: none">作者：{{dict1[i][2]}}</li>
+            <li class="prices" style=" list-style:none; color: black; font-size:20px;float: left;
+margin-left: 305px;margin-top:-30px;" id="price"  value={{dict1[i][3]}}>￥{{dict1[i][3]}}</li>
+
+                <li class="amount" style="list-style:none;position: absolute;padding-left:435px;float: left;margin-top:-25px;width:60px;font-size:20px;" >×{{dict1[i][5]}}</li>
+            <li class="amounts-price" value={{dict1[i][6]}} style="list-style:none;float: left;padding-left:740px;color: black; font-size:20px;
+    margin-top:-32px;">￥{{dict1[i][6]}}</li>
+            </ul>
+            </div>
+            <div class="item-list">
+	            <label style="margin-left: 120px;float: left;font-size: 15px;">给卖家留言：</label><textarea placeholder="选填：" style="width: 328px;
+ resize: none;height: 18px;line-height: 18px;text-indent: 4px;border: 1px solid #ccc;outline: 0;overflow: auto;float: left;"></textarea>
+	            <div style="float: left;margin-left: 130px;">运送方式： 普通配送 快递 免邮<span style="margin-left: 145px;">￥0.0</span></div><br>
+	            <span style="float: right;margin-right:240px;color: red;font-size: 25px;margin-top: 20px;" >￥{{dict1[i][6]}}</span><span style="float: right;margin-top:30px;">(含运费)</span><span style="float: right;margin-top:30px;">合计</span>
+            </div>
+         <hr style="color:gray;width:80%;margin-top:30px;">
+     </div>
+ {%endfor%}
+ </div>
+
+<div style="margin-top: 70px;float: right;margin-right:110px;">
+	<div class="payInfo-wrapper" style="display: inline-block;
+    border: 1px solid #ff0036;min-width: 230px;
+    padding: 10px 10px 10px 20px;text-align: right;">
+    	<span style="font-size:15px;">实付款：</span><span style="color: gray
+    ;font-size:26px;">￥</span><ul style="float: right;margin-top: 0;margin-bottom: 0;padding-left: 0px;"><li id="all" value={{sum}} style="list-style: none;"><span style="color: #ff0036;
+    font: 700 26px tahoma;" >{{sum}}</span></li></ul><br>
+    	<span style="font-size:15px;">寄送至：</span><span style="padding-right: 5px;color: gray;font-size: 14px;">上海</span><span style="padding-right: 5px;color: gray;font-size: 14px;">浦东</span><span style="padding-right: 5px;color: gray;font-size: 14px;">南汇新城镇</span><span style="padding-right: 5px;color: gray;font-size: 14px;">海港大道1550号</span><br>
+    	<span style="font-size: 15px;padding-right: 5px;">收货人:</span><span style="padding-right: 5px;color: gray;font-size: 14px;" >天下为公组</span><span style="padding-right: 5px;color: gray;font-size: 14px;">12345678912</span>
+    </div>
+    <div>
+      <a href=shoppingcart style="text-decoration: none;color: skyblue;padding-right: 48px;"><img src="../static/img/reply.png" style="width: 23px;height: 17px;"><span>返回购物车</span></a>
+      <a id="purchase" role="button" title="提交订单" class="go-btn" style="display: inline-block;width: 182px;height: 39px;position: relative;vertical-align: middle;line-height: 39px;cursor: pointer;text-align: center; font-size: 14px;font-weight: 700;background: #ff0036;color: #fff;">提交订单</a>
+    </div>
+</div>
+
+<script>
+
+        $("#purchase").click(function () {
+            data = {};
+            $.ajax({
+                type: 'POST',
+                url: "/del2",
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json'
+            });
+        })
+
+
+        window.onload= function(){
+            function a(){
+            $("#payment-list li").click(function(event){              
+
+            $(this).css("border", "3px solid skyblue");
+            })
+    };
+            function b(){
+            $(".inner").click(function(event){              
+
+                $(this).css("background", "url(../static/img/list.png) no-repeat");
+            })
+    };
+a();b();
+}
+
+</script>
+     <script type="text/javascript">
+         var sum = document.getElementById("all").value;
+         let randNum = "201812111429169";    randNum += Math.round(Math.random()*10);    randNum += Math.round(Math.random()*10);    let countPrice = sum;    document.querySelector(".go-btn").onclick = function(){      Form = document.createElement("form");      Form.name = "alipayment";     Form.style.display = "none";      Form.action = "http://192.168.43.244:8081/alipay/pagepay/pagepay.php";     Form.method = "post";     Form.target = "_parent";      create1 = document.createElement("input");      create1.name = "WIDout_trade_no";     create1.value = randNum;      create2 = document.createElement("input");      create2.name = "WIDsubject";      create2.value = "购物车结算";      create3 = document.createElement("input");      create3.name = "WIDtotal_amount";     create3.value = countPrice;     create4 = document.createElement("input");      create4.name = "WIDbody";     create4.value = "鹿克书屋电商网站";     Form.appendChild(create1);      Form.appendChild(create2);      Form.appendChild(create3);      Form.appendChild(create4);      document.body.appendChild(Form);      Form.submit();    }
+     </script>
+<script>
+function bf(){
+     let audio = document.getElementById('music1');
+        if(audio.paused)                     {
+        audio.play();//audio.play();// 这个就是播放
+    }else{
+        audio.pause();// 这个就是暂停
+    }
+}
+$(window).on("scroll",function(){
+    if ($(window).scrollTop()) {
+        $('nav').addClass('navToBlack');
+    }
+    else {
+        $('nav').removeClass('navToBlack');
+    }
+})
+</script>
+
+</body>
+</html>

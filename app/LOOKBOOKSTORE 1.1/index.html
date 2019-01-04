@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鹿克书屋LOOK BOOKSTORE</title>
+
+    <link href="font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script defer src="javascript/all.min.js"></script>
+    <script src="javascript/js.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+        $(window).on("scroll",function(){
+          if ($(window).scrollTop()) {
+            $('nav').addClass('navToBlack');
+          }
+          else {
+            $('nav').removeClass('navToBlack');
+          }
+        })
+    
+    </script>
+
+</head>
+<body>
+<header class="haoHeader">
+  <nav class="haoNav">
+    
+    <div class="haoMenu">
+      <ul class="navigation-ul">
+        <li class="ul-item"><a href="#">登录/注册</a></li>
+        <li class="ul-item"><a href="#">我的鹿克</a></li>
+          <li class="ul-item"><a class="btn" href="#"><i class="fa fa-shopping-cart"></i>购物车
+            </a></li>
+            <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="music/1.mp3" autoplay preload hidden></audio>
+
+</li>
+      </ul>
+    </div>
+
+  </nav>
+  </header>
+<div class="searcher">
+    <div class="log">
+    <a href="index.html"><img class="navLogo" src="img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+        <a href="search.html"><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+      </form>  
+     </div>
+</div>
+<div class="inner-con0">
+    <div class="category-type">
+        <i class="fa fa-list-ul"></i>
+        <div class="shangping-fenlei">商品分类</div>
+    </div>
+    <div class="inner-con1">
+        <a class="inner-co1-a" href="#rexiao">热销排行</a>
+        <a class="inner-co1-a" href="#xinshu">新书上市</a>
+        <a class="inner-co1-a" href="#tuijian">好书推荐</a>
+        <a class="inner-co1-a" href="try-reading.html">书籍试看</a>
+        <a class="inner-co1-a" href="#">论坛留言</a>
+        <a class="inner-co1-a" href="sales.html">优惠专区</a>
+        <a class="inner-co1-a" href="news/news.html">新闻公告</a>
+    </div>
+</div>
+  
+<div class="container">
+    <div class="container-left">
+        <ul class="noraml-nav"><br /><br />
+            <li class="normal-li" id="normal-li-1">经济管理学院</li>
+            <li class="normal-li" id="normal-li-2">信息工程学院</li>
+            <li class="normal-li" id="normal-li-3">文理学院</li>
+            <li class="normal-li" id="normal-li-4">海科学院</li>
+            <li class="normal-li" id="normal-li-5">交通运输学院</li>
+            <li class="normal-li" id="normal-li-6">商船学院</li>
+            <li class="normal-li" id="normal-li-7">外国语学院</li>
+            <li class="normal-li" id="normal-li-8">物流工程学院</li>
+            <li class="normal-li" id="normal-li-9">法学院</li>
+        </ul>
+    </div>
+    
+
+    <div class="container-right">
+    </div>
+    <div class="main-banner"  id="main-banner">
+        <div class="imgban" id="imgban3">
+
+        </div>
+        <div class="imgban" id="imgban2">
+
+        </div>
+        <div class="imgban" id="imgban1">
+        </div>
+    </div>
+</div>
+
+<div class="floor">
+    <div class="floor-left">
+        <div class="floor-title">
+            <i class="color-mark"></i>
+            <div class="floor-title">
+                <a name="rexiao">热销排行</a>
+        
+            </div>
+            <div class="floor-sub-name">
+            Popular Book Rank
+            </div>
+        </div>
+        <div class="floor-prev">
+            <img class="floor-arrow" src="img/5.jpg">
+            <div class="banner-detail">
+                <div class="banner-left-detail">热门</div>
+                <div class="banner-right-detail"><span class="banner-right">畅销书籍</span><span class="banner-right">排行榜</span>
+                </div>
+            </div>
+            <div class="detail-wrap">
+                <img class="floor-arrow-big" src="img/6.png">
+            </div>
+        </div>
+        
+        <div class="middle-column-con">
+        	
+            <a class="grid-one-grid-price" href="books/财政学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="ranking img/1.jpg">
+                    <div class="floor-item-title">财政学（第九版）</div>
+                    <div class="floor-price">￥43</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/电工电子学实践教程.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="ranking img/2.jpg">
+                    <div class="floor-item-title">电工电子学实践教程</div>
+                    <div class="floor-price">￥39</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/起重机金属结构设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="ranking img/3.jpg">
+                    <div class="floor-item-title">起重机金属结构设计</div>
+                    <div class="floor-price">￥39</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/系统工程导论.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="ranking img/4.jpg">
+                    <div class="floor-item-title">系统工程导论</div>
+                    <div class="floor-price">￥36</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/企业会计制度设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="ranking img/5.jpg">
+                    <div class="floor-item-title">企业会计制度设计</div>
+                    <div class="floor-price">￥32</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/化工机械及设备.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="ranking img/6.jpg">
+                    <div class="floor-item-title">化工机械及设备(第五版)</div>
+                    <div class="floor-price">￥45</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/物流自动化技术及应用.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="ranking img/7.jpg">
+                    <div class="floor-item-title">物流自动化技术及应用</div>
+                    <div class="floor-price">￥33</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/项目管理知识体系指南.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="ranking img/8.jpg">
+                    <div class="floor-item-title">项目管理知识体系指南</div>
+                    <div class="floor-price">￥228</div>
+            </div></a>
+
+        </div>
+    </div>
+</div>
+<div class="floor">
+    <div class="floor-left">
+        <div class="floor-title">
+            <i class="color-mark"></i>
+            <div class="floor-title">
+                <a name="xinshu">新书上架</a>
+        
+            </div>
+            <div class="floor-sub-name">
+            new books
+            </div>
+        </div>
+        <div class="floor-prev">
+            <img class="floor-arrow" src="img/8.jpg">
+            <div class="banner-detail">
+                <div class="banner-left-detail">最新</div>
+                <div class="banner-right-detail"><span class="banner-right">上架书籍</span><span class="banner-right">Latest</span>
+                </div>
+            </div>
+            <div class="detail-wrap">
+                <img class="floor-arrow-big" src="img/6.png">
+            </div>
+        </div>
+        <div class="middle-column-con">
+            <a class="grid-one-grid-price" href="books/电工学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/电工学(第七版)(下册)....jpg">
+                    <div class="floor-item-title">电工学(第七版)</div>
+                    <div class="floor-price">￥26</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/系统工程导论.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/系统工程导论.jpg">
+                    <div class="floor-item-title">系统工程导论</div>
+                    <div class="floor-price">￥36</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/工程经济学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/工程经济学(第2版).jpg">
+                    <div class="floor-item-title">工程经济学(第2版)</div>
+                    <div class="floor-price">￥35</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/结构力学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/土木工程教材精选-结构力学....jpg">
+                    <div class="floor-item-title">土木工程教材精选-结构力学</div>
+                    <div class="floor-price">￥36</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/起重机金属结构设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/起重机金属结构设计.jpg">
+                    <div class="floor-item-title">起重机金属结构设计</div>
+                    <div class="floor-price">￥39</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/企业会计制度设计.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/企业会计制度设计(第5版普....jpg">
+                    <div class="floor-item-title">企业会计制度设计</div>
+                    <div class="floor-price">￥32</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/团队管理.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/团队管理.jpg">
+                    <div class="floor-item-title">团队管理</div>
+                    <div class="floor-price">￥25</div>
+            </div></a>
+            <a class="grid-one-grid-price" href="books/工程造价编制与职业素养.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/工程造价编制与职业素养.jpg">
+                    <div class="floor-item-title">工程造价编制与职业素养</div>
+                    <div class="floor-price">￥34</div>
+            </div></a>
+
+
+        </div>
+    </div>
+</div>
+<h2 class="wonderful-title"><span class="text-ctn-left"></span><i class="fa fa-heart" style="color:red"></i><span class="text-ctn"><a name="tuijian">好书推荐</a></span><span class="text-ctn-left"></span></h2>
+<div class="xihuan">
+    <a class="grid-one-grid-price" href="books/系统工程导论.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/系统工程导论.jpg">
+                    <div class="floor-item-title">系统工程导论</div>
+                    <div class="floor-price">￥36</div>
+            </div></a>
+    <a class="grid-one-grid-price" href="books/管理信息系统.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/管理信息系统-(原书第13版....jpg">
+                    <div class="floor-item-title">管理信息系统(原书第13版)</div>
+                    <div class="floor-price">￥59</div>
+                </div></a>
+
+    <a class="grid-one-grid-price" href="books/虚拟仪器原理及应用.html">
+                <div class="floor-item-content-wrap" >
+                    <img class="floor-item-img" src="img/虚拟仪器原理及应用(普通....jpg">
+                    <div class="floor-item-title">虚拟仪器原理及应用</div>
+                    <div class="floor-price">￥54</div>
+            </div></a>
+    <a class="grid-one-grid-price" href="books/工程经济学.html">
+                <div class="floor-item-content-wrap">
+                    <img class="floor-item-img" src="img/工程经济学(第2版).jpg">
+                    <div class="floor-item-title">工程经济学(第2版)</div>
+                    <div class="floor-price">￥45</div>
+            </div></a>
+
+</div>
+
+
+
+<div class="footer">
+    <div class="footer-text">
+        
+        <div class="footer-body">
+                        <h6 class="footer-title">购物指南</h6>
+                        <p class="footer-text-a"><a class="nonedecoration"  name="foot_zhanghu" href="#" target="_blank" rel="nofollow">账户管理</a></p>
+                        <p class="footer-text-a"><a class="nonedecoration" name="foot_huiyuan" href="#" target="_blank" rel="nofollow">会员优惠</a></p>
+                    </div>
+        <div class="footer-body">
+                        <h6 class="footer-title">支付方式</h6>
+                        <p class="footer-text-a"><a class="nonedecoration" name="foot_zhifu" href="bottom/payment.html" target="_blank" rel="nofollow">网上支付</a></p>
+                        <p class="footer-text-a"><a class="nonedecoration" name="foot_zhuanzhang" href="bottom/zhuanzhang.html" target="_blank" rel="nofollow">银行转帐</a></p>
+                    </div>
+        <div class="footer-body">
+                         <h6 class="footer-title">订单服务</h6>
+                        <p class="footer-text-a"><a class="nonedecoration" name="foot_zhifu" href="#" target="_blank">配送服务查询</a></p>
+                        <p class="footer-text-a"><a class="nonedecoration" name="foot_zhuanzhang" href="#" target="_blank">订单状态说明</a></p>
+                    </div>
+
+         
+
+        <div class="footer-body">
+                        <h6 class="footer-title">商家服务</h6>
+                        <p class="footer-text-a"><a class="nonedecoration" name="foot_zhifu" href="bottom/lianxi.html" target="_blank" >联系我们</a></p>
+                        <p class="footer-text-a"><a class="nonedecoration" name="foot_zhuanzhang" href="bottom/tousu.html" target="_blank">投诉我们</a></p>
+                    </div>
+        
+
+    </div>
+            
+        <div class="footer-text-span">
+        <a class="nonedecoration" href="bottom/introduction.html" target="_blank">公司简介</a><span class="sep">|</span><a class="nonedecoration" href="bottom/lianmeng.html" target="_blank">网站联盟</a><span class="sep">|</span><a class="nonedecoration" href="index.html" target="_blank">网站首页</a>
+            <p class="copyright"><span class="sap">Copyright (C)鹿克书屋2018年, All Rights Reserved</span><span class="sap">沪ICP证xxxxxx号</span><span class="sap">版物经营许可证 xxxx号</span></p>
+        </div>
+        
+    </div>
+<script>
+    function bf(){
+     let audio = document.getElementById('music1'); 
+        if(audio.paused)                     {                 
+        audio.play();//audio.play();// 这个就是播放  
+    }else{
+        audio.pause();// 这个就是暂停
+    }
+}
+</script>
+<script>
+    $(document).ready(function(){
+        $('.normal-li').mouseenter(function(){
+            $('.container-right').css("opacity","1");
+
+        });
+        $('.container-right').mouseleave(function(){
+            $('.container-right').css("opacity","0");
+
+        });
+
+
+});
+    let content1 = "<h3>经济管理学院</h3><span class='dayu'>></span><a href='catalog/财务与会计系.html'>财务与会计学系</a><a href='catalog/工商与公共管理系.html'>工商与公共管理系</a><a href='catalog/管理科学系.html'>管理科学系</a> <img class='advertisements' src='img/timg.gif'>";
+    let content2 = "<h3>信息工程学院</h3><span class='dayu'>></span><a href='catalog/计算机科学系.html'>计算机科学系</a><a href='catalog/电子工程系.html'>电子工程系</a> <img class='advertisements' src='img/timg.gif'>";
+    let content3 = "<h3>文理学院</h3><span class='dayu'>></span><a href='catalog/信息与计算机科学系.html'>信息与计算机科学系</a><a href='catalog/艺术设计系.html'>艺术设计系</a><a href='catalog/行政管理系.html'>行政管理系</a> <img class='advertisements' src='img/timg.gif'>";
+    let content4 = "<h3>海洋科学与工程学院</h3><span class='dayu'>></span><a href='catalog/环境与安全工程系.html'>环境与安全工程系</a><a href='catalog/港口与航道工程系.html'>港口与航道工程系</a><a href='#'></a> <img class='advertisements' src='img/timg.gif'>";
+    let content5 = "<h3>交通运输学院</h3><span class='dayu'>></span><a href='catalog/管理系.html'>管理系</a><a href='catalog/交通工程系.html'>交通工程系</a><a href='catalog/国际航运系.html'>国际航运系</a> <img class='advertisements' src='img/timg.gif'>";
+    let content6 = "<h3>商船学院</h3><span class='dayu'>></span><a href='catalog/航海系.html'>航海系</a><a href='catalog/轮机工程系.html'>轮机工程系</a><a href='#'></a> <img class='advertisements' src='img/timg.gif'>";
+    let content7 = "<h3>外国语学院</h3><span class='dayu'>></span><a href='catalog/英语系.html'>英语系</a><a href='catalog/日语系.html'>日语系</a><a href='#'></a> <img class='advertisements' src='img/timg.gif'>";
+    let content8 = "<h3>物流工程学院</h3><span class='dayu'>></span><a href='catalog/机械工程系.html'>机械工程系</a><a href='catalog/工业工程系.html'>工业工程系</a><a href='catalog/电气自动化系.html'>电气自动化系</a> <img class='advertisements' src='img/timg.gif'>";
+    let content9 = "<h3>法学院</h3><span class='dayu'>></span><a href='catalog/法律系.html'>法律系</a><a href='#'></a><a href='#'></a> <img class='advertisements' src='img/timg.gif'>";
+    $("#normal-li-1").mouseenter(function(){
+        $(".container-right").html(content1);
+    })
+    $("#normal-li-2").mouseenter(function(){
+        $(".container-right").html(content2);
+    })
+    $("#normal-li-3").mouseenter(function(){
+        $(".container-right").html(content3);
+    })
+    $("#normal-li-4").mouseenter(function(){
+        $(".container-right").html(content4);
+    })
+    $("#normal-li-5").mouseenter(function(){
+        $(".container-right").html(content5);
+    })
+    $("#normal-li-6").mouseenter(function(){
+        $(".container-right").html(content6);
+    })
+    $("#normal-li-7").mouseenter(function(){
+        $(".container-right").html(content7);
+    })
+    $("#normal-li-8").mouseenter(function(){
+        $(".container-right").html(content8);
+    })
+    $("#normal-li-9").mouseenter(function(){
+        $(".container-right").html(content9);
+    })
+
+        
+</script>
+   
+
+
+
+</body>
+</html>

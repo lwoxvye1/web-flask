@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link href="../static/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script defer src="../static/javascript/all.min.js"></script>
+    <script src="../static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.bootcss.com/p/buttons/css/buttons.css">
+
+
+<body>
+<header class="haoHeader">
+    <nav class="haoNav">
+
+        <div class="haoMenu">
+            <ul class="navigation-ul">
+                <li class="ul-item"><a href="#">登录/注册</a></li>
+                <li class="ul-item"><a href="#">我的鹿克</a></li>
+                <li class="ul-item"><a class="btn" href="#"><i class="fa fa-shopping-cart"></i>购物车
+                </a></li>
+                <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="../static/music/1.mp3" autoplay preload hidden></audio>
+
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+</header>
+<div class="searcher">
+    <div class="log">
+        <a href=index><img class="navLogo" src="../static/img/logo.png" /></a></div>
+    <div class="book-search">
+        <form class="search-form">
+            <input type="text" name="" class="search" placeholder="搜索 书籍">
+            <a href=search><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+        </form>
+    </div>
+</div>
+<h2 class="biaoti">我的购物车</h2>
+<div class="project" style="color: #8c8c8c;font-size: 15px;">
+    <div class="member">
+        <ul>
+            <li class="products-detail" style="list-style: none;display: inline-block;margin-left: 12%;">商品详情</li>
+            <li class="price" style="list-style: none;display: inline-block;margin-left: 43%;">价格</li>
+            <li class="amounts" style="list-style: none;display: inline-block;margin-left:3%;">数量</li>
+            <li class="calculate" style="list-style: none;display: inline-block;margin-left:5%;">合计</li>
+            <li class="make" style="list-style: none;display: inline-block;margin-left: 3%;">删除</li>
+        </ul>
+    </div>
+</div>
+<hr class="line" />
+
+{%for  i  in  dict1 %}
+<div class="shopping-cart-prodocts">
+    <input class="check" type="checkbox" name="check" id="check" checked style="margin-left: 10%;zoom:150%;">
+    <div class="shopping-cart-img" style=" position: relative;margin-left: 11%;"><img style="width:150px; height: 150px;" src={{dict1[i][4]}}></div>
+    <div class="shopping-cart-products" style="width: 100%; height: 150px;position: absolute; margin-top: -10%; margin-left: 19%;">
+        <ul >
+            <li class="name" id="name" style="list-style: none;" value={{dict1[i][0]}}>商品名称：{{dict1[i][0]}}</li>
+            <li style="list-style: none;" class="codes" id="code" value={{dict1[i][1]}}>编码：{{dict1[i][1]}}</li>
+            <li style="list-style: none">作者：{{dict1[i][2]}}</li>
+            <li class="prices" style=" list-style:none; color: black; font-size:20px;float: left;
+margin-left: 500px;margin-top:-30px;" id="price"  value={{dict1[i][3]}}>￥{{dict1[i][3]}}</li>
+            <li class="amount" style="list-style:none;position: absolute;padding-left:575px;float: left;margin-top:-25px;width:60px;" >
+                <button name="left" onclick="left()">-</button><input type="text" class="input" name="input" id="input" style="font-size: 13px;width: 10%;text-align: center;
+    margin-top:-30px;" value="1" ><button onclick="right()" name="right">+</button></li>
+            <li class="amounts-price" style="list-style:none;float: left;padding-left:660px;color: red; font-size:25px;
+    margin-top:-32px;" id="amounts-price">￥{{dict1[i][3]}}</li>
+            <li class="deletebtn" style=" list-style:none;margin-top:-30px;float: left;padding-left:750px;text-align: center;"><a  name="del"  id="button"  class="button button-glow button-rounded button-caution" style="width: 50px;padding:0;">╳</a></li>
+        </ul>
+    </div>
+    <hr class="shopping-list" style="width:80%;color: #8c8c8c;text-align: center;height: 3px;"/>
+</div>
+{%endfor%}
+
+
+
+<div class="float-bar-wrapper" style="height: 50px;
+    position:fixed;
+    bottom: 0;
+    z-index: 10000;
+    width: 80%;
+    background: #e5e5e5;
+    margin-left: 10%;">
+    <ul style="text-align: left;margin-top: 5px;">
+        <li class="delete-delete" style="list-style: none;
+     display: inline-block;margin-left:-2%" ><input class="all-check" type="checkbox" name="all-check" id="all-check" checked style="zoom:150%;"><span style="font-size: 15px;">选择全部</span></li>
+        <li value={{len}} id="had" style="list-style: none;display: inline-block;margin-left: 50%;" >已选商品
+            <span  id="hadhad"  style="color: red; font-size: 23px;">{{len}}</span>件</li>
+        <li id="sum" value={{sum}} style="list-style: none;display: inline-block;;margin-left: 8%;color: gray; font-size: 23px;"> 合计：{{sum}}</li>
+        <li style="list-style: none;
+     display: inline-block;margin-left: 2%;"><a id="checkstand" class="button button-glow button-rounded button-caution">结算</a></li>
+    </ul>
+</div>
+
+
+<script>
+    var sum = Number(document.getElementById("sum").value.toFixed(1));
+    var had = Number(document.getElementById("had").value);
+    $(document).ready(function() {
+        var bDiv = document.getElementsByName("right");
+        bDiv[0].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[0].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[0].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[0].value++;
+                $(".amounts-price:eq(0)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(0)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[1].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[1].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[1].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[1].value++;
+                $(".amounts-price:eq(1)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(1)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[2].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[2].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[2].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[2].value++;
+                $(".amounts-price:eq(2)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(2)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[3].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[3].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[3].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[3].value++;
+                $(".amounts-price:eq(3)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(3)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[4].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[4].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[4].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[4].value++;
+                $(".amounts-price:eq(4)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(4)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[5].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[5].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[5].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[5].value++;
+                $(".amounts-price:eq(5)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(5)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[6].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[6].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[6].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[6].value++;
+                $(".amounts-price:eq(6)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(6)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[7].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[7].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[7].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[7].value++;
+                $(".amounts-price:eq(7)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(7)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[8].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[8].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[8].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[8].value++;
+                $(".amounts-price:eq(8)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(0)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        bDiv[9].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[9].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[9].value;
+            if (b1 < 9) {
+                b1++;
+                document.getElementsByName("input")[9].value++;
+                $(".amounts-price:eq(9)").text("￥" + (a1 * b1).toFixed(1));
+                if($(".check:eq(0)").prop("checked")) {
+                    sum += Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+    });
+    $(document).ready(function() {
+        var zDiv = document.getElementsByName("left");
+        zDiv[0].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[0].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[0].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[0].value--;
+                $("#amounts-price").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(0)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[1].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[1].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[1].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[1].value--;
+                $(".amounts-price:eq(1)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(1)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[2].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[2].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[2].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[2].value--;
+                $(".amounts-price:eq(2)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(2)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[3].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[3].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[3].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[3].value--;
+                $(".amounts-price:eq(3)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(3)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[4].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[4].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[4].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[4].value--;
+                $(".amounts-price:eq(4)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(4)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[5].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[5].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[5].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[5].value--;
+                $(".amounts-price:eq(5)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(5)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[6].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[6].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[6].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[6].value--;
+                $(".amounts-price:eq(6)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(6)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[7].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[7].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[7].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[7].value--;
+                $(".amounts-price:eq(7)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(7)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[8].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[8].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[8].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[8].value--;
+                $(".amounts-price:eq(8)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(8)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+        zDiv[9].onclick = function () {
+            var a1 = document.getElementsByClassName("prices")[9].value.toFixed(1);
+            var b1 = document.getElementsByName("input")[9].value;
+            if (b1 > 1) {
+                b1--;
+                document.getElementsByName("input")[9].value--;
+                $(".amounts-price:eq(9)").text("￥"+(a1*b1).toFixed(1));
+                if($(".check:eq(9)").prop("checked")) {
+                    sum -= Number(a1);
+                    $("#sum").text("合计：" + sum.toFixed(1))
+                }
+            }
+        };
+    });
+    $(document).ready(function(){
+        $(".check:eq(0)").click(function () {
+            if($(".check:eq(0)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[0].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[0].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[0].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[0].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(1)").click(function () {
+            if($(".check:eq(1)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[1].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[1].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[1].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[1].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(2)").click(function () {
+            if($(".check:eq(2)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[2].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[2].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[2].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[2].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(3)").click(function () {
+            if($(".check:eq(3)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[3].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[3].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[3].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[3].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(4)").click(function () {
+            if($(".check:eq(4)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[4].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[4].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[4].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[4].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(5)").click(function () {
+            if($(".check:eq(5)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[5].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[5].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[5].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[5].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(6)").click(function () {
+            if($(".check:eq(6)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[6].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[6].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[6].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[6].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(7)").click(function () {
+            if($(".check:eq(7)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[7].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[7].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[7].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[7].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(8)").click(function () {
+            if($(".check:eq(8)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[8].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[8].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[8].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[8].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+        $(".check:eq(9)").click(function () {
+            if($(".check:eq(9)").prop("checked")){
+                var a1 = document.getElementsByClassName("prices")[9].value.toFixed(1);
+                var b1 = document.getElementsByName("input")[9].value;
+                sum += Number((a1 * b1).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                had = Number(had + Number(1));
+                $("#hadhad").text(Number(had))
+            }else{
+                var a2 = document.getElementsByClassName("prices")[9].value.toFixed(1);
+                var b2 = document.getElementsByName("input")[9].value;
+                sum -= Number((a2 * b2).toFixed(1));
+                $("#sum").text("合计："+ sum.toFixed(1) );
+                $("#all-check").prop("checked", false);
+                had = Number(had - Number(1));
+                $("#hadhad").text(Number(had))
+            }
+        });
+    });
+    $(document).ready(function(){
+        $("#all-check").click(function () {
+            if($("#all-check").prop("checked")){
+                if (!($(".check:eq(0)").prop("checked"))){
+                    document.getElementsByName("check")[0].click()
+                }
+                if (!($(".check:eq(1)").prop("checked"))){
+                    document.getElementsByName("check")[1].click()
+                }
+                if (!($(".check:eq(2)").prop("checked"))){
+                    document.getElementsByName("check")[2].click()
+                }
+                if (!($(".check:eq(3)").prop("checked"))){
+                    document.getElementsByName("check")[3].click()
+                }
+                if (!($(".check:eq(4)").prop("checked"))){
+                    document.getElementsByName("check")[4].click()
+                }
+                if (!($(".check:eq(5)").prop("checked"))){
+                    document.getElementsByName("check")[5].click()
+                }
+                if (!($(".check:eq(6)").prop("checked"))){
+                    document.getElementsByName("check")[6].click()
+                }
+                if (!($(".check:eq(7)").prop("checked"))){
+                    document.getElementsByName("check")[7].click()
+                }
+                if (!($(".check:eq(8)").prop("checked"))){
+                    document.getElementsByName("check")[8].click()
+                }
+                if (!($(".check:eq(9)").prop("checked"))){
+                    document.getElementsByName("check")[9].click()
+                }
+            }else{
+                if ($(".check:eq(0)").prop("checked")){
+                    document.getElementsByName("check")[0].click()
+                }
+                if ($(".check:eq(1)").prop("checked")){
+                    document.getElementsByName("check")[1].click()
+                }
+                if ($(".check:eq(2)").prop("checked")){
+                    document.getElementsByName("check")[2].click()
+                }
+                if ($(".check:eq(3)").prop("checked")){
+                    document.getElementsByName("check")[3].click()
+                }
+                if ($(".check:eq(4)").prop("checked")){
+                    document.getElementsByName("check")[4].click()
+                }
+                if ($(".check:eq(5)").prop("checked")){
+                    document.getElementsByName("check")[5].click()
+                }
+                if ($(".check:eq(6)").prop("checked")){
+                    document.getElementsByName("check")[6].click()
+                }
+                if ($(".check:eq(7)").prop("checked")){
+                    document.getElementsByName("check")[7].click()
+                }
+                if ($(".check:eq(8)").prop("checked")){
+                    document.getElementsByName("check")[8].click()
+                }
+                if ($(".check:eq(9)").prop("checked")){
+                    document.getElementsByName("check")[9].click()
+                }
+            }
+        })
+    });
+    $(document).ready(function(){
+         $(".deletebtn:eq(0)").click(function () {
+             if(confirm("是否确认删除")) {
+                 var code = document.getElementsByClassName("codes")[0].innerHTML;
+                 var data = {"code" : code};
+                 $.ajax({
+                     type: 'POST',
+                     url: "/del1",
+                     data: JSON.stringify(data),
+                     contentType: 'application/json; charset=UTF-8',
+                     dataType: 'json'
+                 });
+                 setTimeout("window.location = 'shoppingcart'",400);
+             }
+         });
+        $(".deletebtn:eq(1)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[1].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+        $(".deletebtn:eq(2)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[2].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+        $(".deletebtn:eq(3)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[3].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+        $(".deletebtn:eq(4)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[4].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+        $(".deletebtn:eq(5)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[5].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+        $(".deletebtn:eq(6)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[6].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+        $(".deletebtn:eq(7)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[7].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+        $(".deletebtn:eq(8)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[8].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+        $(".deletebtn:eq(9)").click(function () {
+            if(confirm("是否确认删除")) {
+                var code = document.getElementsByClassName("codes")[9].innerHTML;
+                var data = {"code" : code};
+                $.ajax({
+                    type: 'POST',
+                    url: "/del1",
+                    data: JSON.stringify(data),
+                    contentType: 'application/json; charset=UTF-8',
+                    dataType: 'json'
+                });
+                setTimeout("window.location = 'shoppingcart'",400);
+            }
+        });
+    });
+    $(document).ready(function(){
+        $("#checkstand").click(function () {
+            var list = [];
+            var amount = [];
+            var sum = [];
+            var data = {};
+            var i = Number(0);
+            if ($(".check:eq(0)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[0].innerHTML;
+                var a = document.getElementsByName("input")[0].value;
+                var b = document.getElementsByClassName("prices")[0].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                list[i] = ISBN;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(1)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[1].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[1].value;
+                var b = document.getElementsByClassName("prices")[1].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(2)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[2].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[2].value;
+                var b = document.getElementsByClassName("prices")[2].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(3)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[3].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[3].value;
+                var b = document.getElementsByClassName("prices")[3].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(4)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[4].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[4].value;
+                var b = document.getElementsByClassName("prices")[4].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(5)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[5].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[5].value;
+                var b = document.getElementsByClassName("prices")[5].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(6)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[6].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[6].value;
+                var b = document.getElementsByClassName("prices")[6].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(7)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[7].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[7].value;
+                var b = document.getElementsByClassName("prices")[7].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(8)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[8].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[8].value;
+                var b = document.getElementsByClassName("prices")[8].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            if ($(".check:eq(9)").prop("checked")){
+                var ISBN = document.getElementsByClassName("codes")[9].innerHTML;
+                list[i] = ISBN;
+                var a = document.getElementsByName("input")[9].value;
+                var b = document.getElementsByClassName("prices")[9].value.toFixed(1);
+                var s = (a * b).toFixed(1);
+                sum[i] = s;
+                amount[i] = a;
+                i = Number(i+1);
+            }
+            data[0] = list;
+            data[1] = amount;
+            data[2] = sum;
+            $.ajax({
+                type: 'POST',
+                url: "/to_checkstand",
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=UTF-8',
+                dataType: 'json'
+            });
+            setTimeout("window.location = 'checkstand'",500);
+        })
+    })
+</script>
+<script type="application/javascript"  src="../static/javascript/js.js"></script>
+</body>
+</html>

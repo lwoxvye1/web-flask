@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>注册</title>
+    <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../static/style.css">
+
+    <script src="../static/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    ﻿
+    
+       <header class="haoHeader">
+  <nav class="haoNav">
+    
+    <div class="haoMenu">
+      <ul class="navigation-ul">
+        <li class="ul-item" ><a href=login >登录/注册</a></li>
+        <li class="ul-item"><a href="#">我的鹿克</a></li>
+          <li class="ul-item"><a class="btn" href=shoppingcart><i class="fa fa-shopping-cart"></i>购物车
+            </a></li>
+            <li class="ul-item"><span id="bf" onclick="bf()">音乐</span><audio id="music1" src="../static/music/1.mp3" autoplay preload hidden></audio>
+
+</li>
+      </ul>
+    </div>
+
+  </nav>
+  </header>
+  <div class="searcher">
+    <div class="log">
+    <a href=index><img id="logo" class="navLogo" src="../static/img/logo.png" /></a></div>
+    <div class="book-search">
+      <form class="search-form" style="width: 500px;margin-left:500px;margin-top:0;padding-top:25px;">
+          <input type="text" name="" class="search" placeholder="搜索 书籍">
+        <a href=search><input name="button" type="button" class="submit" id="搜索" title="搜索" value="搜索" /> </a>
+      </form>  
+     </div>
+</div>
+            <div class="content-layout" style="width:100%;margin: 0 auto;overflow: hidden;position: relative;height: 600px;background: linear-gradient(rgba(0,0,100,0.28),rgba(0,0,92,0.35)),url(../static/img/背景.jpg)">
+            <div class="cong" style="background:rgba(255,255,255,0.19);padding: 40px;height:500px;margin-left:60%;width: 300px;margin-top: 20px;">
+         
+             <form id="register" action=register_success  method="post" style="text-align: center;margin-left: 0;width: 300px;">
+                     
+                         <div style="color: #38a2ff; font-size: 35px;"  ><span id="cong" >{{cong}} </span></div>
+                         <h2 style="color: white;" >用户注册</h2>
+                         <br>
+                         <style type="text/css">
+                             input::-webkit-input-placeholder{
+                                color: white;
+                             }
+                         </style>
+                         <input type="text" id="username" name="username" value="" placeholder="请输入用户名" onblur="isUserName()" onclick="disappear1()" style="width: 240px; text-align: center; background: transparent; border: none;border-bottom: 1px solid #fff;font-size: 16px;font-weight: 200px;padding: 10px 0;transition: border 0.5s;outline: none;color: white; -webit" />
+                             <div style="color: red"><span id="errorUserName"> </span></div>
+                        <input type="password" name="password" id="password" value="" placeholder="请输入密码" onblur="isPassword()" onclick="disappear2()" style="width: 240px; text-align: center; background: transparent; border: none;border-bottom: 1px solid #fff;font-size: 16px;font-weight: 200px;padding: 10px 0;transition: border 0.5s;outline: none;color: white; " >
+                             <div style="color: red"><span id="errorPassword"> </span></div>
+                        <input type="password" name="checkpassword" id="checkpassword" value="" placeholder="请再次输入密码" onblur="checkPassword()" onclick="disappear3()" style="width: 240px; text-align: center; background: transparent; border: none;border-bottom: 1px solid #fff;font-size: 16px;font-weight: 200px;padding: 10px 0;transition: border 0.5s;outline: none;color: white; " >
+                             <div style="color: red"><span id="errorCheck"> </span></div>
+                        <input type="text" name="telephone" id="telephone" value="" placeholder="请输入手机号" onblur="isPoneAvailable()" onclick="disappear4()" style="width: 240px; text-align: center; background: transparent; border: none;border-bottom: 1px solid #fff;font-size: 16px;font-weight: 200px;padding: 10px 0;transition: border 0.5s;outline: none;color: white; " >
+                             <div style="color: red"><span id="errorTelephone"> </span></div>
+                        
+                         <span><input type="checkbox" id="gridCheck" name="name"  onblur="isCheckbox()" onclick="disappear5()"/><span style="color: white;">我已阅读并接受</span><a href="#" style="text-decoration: none;color: yellow;">版权说明和隐私保护条款</a></span>
+                         <div style="color: red"><span id="errorCheckBox"> </span></div>
+                         <div style="color: red" ><span id="warn" >{{warn}} </span></div>
+                         <input type="submit" value="注册" style="border: none;width: 150px;background: #38a2ff;color: #fff;font-size: 16px;line-height: 25px;padding: 10px 0;border-radius: 15px;cursor: pointer;"  onclick="check(event)">
+                         <br>
+                         <br>
+                         <br>
+                         <div class="user-right">
+                            <span style="color: white;">已有帐号</span>
+                            <a href=login class="log-button" style="margin-right: 0; font-size: 15px;color:yellow;text-decoration:none;">立即登录</a>
+                        </div>
+                     
+                  </form>
+              </div>
+            </div>
+             
+      
+       
+<script>
+function check(event) {
+    event.preventDefault();
+    isUserName();
+    isPassword();
+    checkPassword();
+    isPoneAvailable();
+    isCheckbox();
+    document.querySelector("#register").submit();
+
+}
+function isUserName() {
+    let userName = document.getElementById("username").value;
+    if (userName === '' || userName === undefined || userName === null){
+        document.getElementById("errorUserName").innerHTML="请填写用户名";
+        return False
+    }
+    if (userName.length<3 || userName.length>10){
+        document.getElementById("errorUserName").innerHTML="用户名必须在3-10个字符之间";
+        return False
+    }
+}
+function isPassword() {
+    let x = document.getElementById("password").value;
+    if (x === '' || x === undefined || x === null){
+        document.getElementById("errorPassword").innerHTML="请输入密码";
+        return False
+    }
+    if (x.length < 6){
+        document.getElementById("errorPassword").innerHTML="密码过短！请重新输入";
+        return False
+    }
+}
+function checkPassword() {
+    let x = document.getElementById("password").value;
+    let y = document.getElementById("checkpassword").value;
+    if (y === '' || y === undefined || y === null){
+        document.getElementById("errorCheck").innerHTML="请再次输入密码";
+        return False
+    }
+    if (x !== y){
+        document.getElementById("errorCheck").innerHTML="两次密码输入不相同！请重新输入";
+        return False
+    }
+}
+function isPoneAvailable() {
+    let x = document.getElementById("telephone").value;
+    let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!myreg.test(x)) {
+        document.getElementById("errorTelephone").innerHTML="手机号码输入有误！";
+        return False
+    }
+}
+function isCheckbox() {
+    let checkbox = document.getElementById("gridCheck");
+    if(!checkbox.checked){
+        document.getElementById("errorCheckBox").innerHTML="请同意本网站相关协议";
+        return False
+    }
+}
+function disappear1() {
+    document.getElementById("errorUserName").innerHTML=null
+    document.getElementById("warn").innerHTML=null
+}
+function disappear2() {
+    document.getElementById("errorPassword").innerHTML=null
+    document.getElementById("warn").innerHTML=null
+}
+function disappear3() {
+    document.getElementById("errorCheck").innerHTML=null
+    document.getElementById("warn").innerHTML=null
+}
+function disappear4() {
+    document.getElementById("errorTelephone").innerHTML=null
+    document.getElementById("warn").innerHTML=null
+}
+function disappear5() {
+    document.getElementById("errorCheckBox").innerHTML=null
+    document.getElementById("warn").innerHTML=null
+}
+</script>
+    <script type="text/javascript" src="../static/javascript/js.js"></script>
+</body>
+</html>
